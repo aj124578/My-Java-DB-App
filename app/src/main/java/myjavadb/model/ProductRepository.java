@@ -7,6 +7,10 @@ import java.sql.SQLException;
 public class ProductRepository {
         private Connection conn;
 
+        public ProductRepository(Connection conn) {
+            this.conn = conn;
+        }
+
         public void insert(String name, int price, int qty) throws SQLException {
 
             // 2. 버퍼 접근
