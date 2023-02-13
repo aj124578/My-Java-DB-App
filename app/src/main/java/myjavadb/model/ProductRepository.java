@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ProductRepository {
         private Connection conn;
 
-        private void insert(String name, int price, int qty) throws SQLException {
+        public void insert(String name, int price, int qty) throws SQLException {
 
             // 2. 버퍼 접근
             String sql = "insert into product(name, price, qty, created_at) values(?,?,?,now())";
@@ -29,7 +29,6 @@ public class ProductRepository {
             }
 
             // 6. 최종 마무리
-
             pstmt.close();
         }
     }
