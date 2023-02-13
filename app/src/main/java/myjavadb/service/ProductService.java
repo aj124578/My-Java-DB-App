@@ -19,8 +19,19 @@ public class ProductService {
 
     public void 상품등록(String name, int price, int qty) throws SQLException{
         // 트랜잭션 시작
-        productRepository.insert(name, price, qty);
-        productRepository.insert(name, price, qty);
-        // 트랜잭션 종료
+        try {
+            productRepository.insert(name, price, qty);
+            productRepository.insert(name, price, qty);
+            conn.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+            // 트랜잭션 종료
+        }
+        
     }
 }

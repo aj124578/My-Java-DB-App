@@ -16,7 +16,7 @@ public class DBApp {
         ProductRepository productRepository = new ProductRepository(conn);
 
         // 3. service를 메모리에 올리기
-        ProductService productService = new ProductService(productRepository);
+        ProductService productService = new ProductService(productRepository, conn);
         productService.상품등록("apple", 2000, 5);
     }
 }
