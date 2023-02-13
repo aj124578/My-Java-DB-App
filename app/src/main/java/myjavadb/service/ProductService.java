@@ -1,5 +1,6 @@
 package myjavadb.service;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import myjavadb.model.ProductRepository;
@@ -8,9 +9,11 @@ public class ProductService {
     
     private ProductRepository productRepository;
 
+    private Connection conn;
     
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, Connection conn) {
         this.productRepository = productRepository;
+        this.conn = conn;
     }
 
 
