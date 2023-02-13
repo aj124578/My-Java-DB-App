@@ -11,6 +11,30 @@ public class ProductRepository {
             this.conn = conn;
         }
 
+        /* delete */
+        public void deleteById(int id) throws SQLException {
+
+            // 2. 버퍼 접근
+            String sql = "delete from product where id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            // 3. 물음표 완성
+            pstmt.setInt(1, id);
+
+            // 4. 전송
+            int result = pstmt.executeUpdate();
+
+            // 5. 응답에 대한 처리
+            if (result == 1) {
+                System.out.println("delete 되었습니다.");
+            } else {
+                System.out.println("delete 실패");
+            }
+
+            // 6. 최종 마무리
+            pstmt.close();
+        }
+
         public void insert(String name, int price, int qty) throws SQLException {
 
             // 2. 버퍼 접근
