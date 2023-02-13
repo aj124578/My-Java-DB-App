@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import myjavadb.config.DBconfig;
 
 public class DBApp {
     private Connection conn;
+
     private static DBApp instance = new DBApp();
 
     public static DBApp getInstance() {
@@ -16,23 +16,12 @@ public class DBApp {
 
     private DBApp() {
     }
-    
-    
-    public static void main(String[] args) throws Exception {
-        DBApp app = new DBApp();
-        
-        // 1.Connection 객체
-        app.conn = DBconfig.getConnection();
-        insert("apple", 500, 10); 
-        insert("apple", 500, 10);
-        app.conn.close();
-    }
 
-    private static void insert(String name, int price, int qty) throws SQLException {
-
+    private void insert(String name, int price, int qty) throws SQLException {
+ 
         // 2. 버퍼 접근
         String sql = "insert into product(name, price, qty, created_at) values(?,?,?,now())";
-        PreparedStatement pstmt = app.conn.prepareStatement(sql);
+        PreparedStatement pstmt = conn.prepareStatement(sql);
 
         // 3. 물음표 완성
         pstmt.setString(1, name);
